@@ -1,1 +1,90 @@
 
+<head>
+	<title>
+		Anh's Second Bar Chart
+	</title>
+	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"> </script>
+	<script src="http://code.highcharts.com/highcharts.js"> </script>
+	<style>
+		h1 {
+			font-family: sans-serif;
+			font-size:26px;
+			font-weight: bold;
+		}
+		p {
+			font-family: sans-serif;
+			line-height: 1.2;
+			font-weight: 200;
+
+		}
+		.source {
+			font-family: sans-serif;
+			font-size: 12px;
+			color:gray;
+			line-height: 1.5em;
+		}
+	</style>
+</head>
+<body>
+	<h1>But Levels Are Still Highest in the Region</h1>
+	<p>The city's lead-exposure rate in 2014 was higher than any of its surrounding suburban counties, and twice the national average.</p>
+	<div id="chart2"></div>
+	<div class="source">
+		<p>
+			Children under 7 years old<br>
+			SOURCE: Philadelphia Department of Health; Pa. Department of Health; <br>
+			NJ Department of Health; Center for Disease Control and Prevention 
+		</p>
+	</div>
+
+	<!--JS: Chart2 -->
+
+	<script>
+		$(function() {
+			var chartcountyComparison = Highcharts.chart('chart2', {
+
+				chart: {
+					renderTo: "containercountyComparison",
+					type: 'bar',
+					height: 400,
+				},
+				xAxis: {
+					id: "x-axis",
+					categories: ['Burlington', 'Gloucester', 'Camden', 'Bucks*', 'US', 'Montgomery*', 'Chester*', 'Delaware*', 'Philadelphia'],
+					reversed: false
+				},
+				yAxis: {
+					title: {
+						text: " "
+					},
+					min: null,
+					max: null,
+					
+				},
+				legend: {
+					layout: "horizontal",
+					align: "center",
+					verticalAlign: "bottom",
+					enabled: false,
+				},
+				tooltip: {
+					formatter: 
+						function() {
+							if (this.x === '<strong>US</strong>') {
+								return text = this.y + '% of children in the ' + this.x + ' had a BLL of 5+ (2014)';}
+							else {
+								return this.y + '% of children in <strong>' + this.x '<strong> had a BLL of 5+ (2014)';}
+										}
+							},
+				credits: {
+					enabled: false,
+				}			
+				series: [{
+					name:"Pct 5+",
+					data: [1.5,1.7,2.1,2.4,{y:3.8, color: '#D8E32D'},5.1,6.2,6.7,8.0]
+			}]
+		});
+});	
+
+	</script>
+</body>
